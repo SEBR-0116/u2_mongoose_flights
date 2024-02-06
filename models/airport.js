@@ -1,6 +1,6 @@
 const { Schema } = require('mongoose')
 
-const Company = new Schema (
+const Airport = new Schema (
     {
         name: { type: String, required: true },
         location: { type: String, required: true },
