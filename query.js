@@ -107,7 +107,157 @@ const view_upcomming_flights = async () => {
   console.log(sort_airline)
 }
 
+// I want to see all flights from California to New York by descending price 
+// (hint - you may need to create a number of Flight objects that meet this requirement.
+//   You can use JFK and LGA for New York airports, and LAX and SFO for California's)
 
+const create_Airport = async () => {
+
+  //Air port Added
+  let create_airports = [
+    {
+      name : "California",
+      location: "Toronto,ON",
+      code: "LAX"
+  },
+  {
+    name : "California",
+    location: "Toronto,ON",
+    code: "SFO"
+  },
+  {
+      name : "New York",
+      location: "Calgary,AB",
+      code: "JFK"
+  },
+  {
+      name : "New York",
+      location: "Calgary,AB",
+      code: "LGA"
+  }]
+  await Airport.insertMany(create_airports)
+  console.log('Flight')
+}
+
+const filter_cal_ny_flight = async () => {
+
+//Flights added
+  const california_LAX = await Airport.find({ code: "LAX" })
+  const california_SFO = await Airport.find({  code: "SFO" })
+  const new_york_JFK = await Airport.find({ code: "JFK" })
+  const new_york_LGA = await Airport.find({ code: "LGA" }) 
+ 
+ 
+  const Flights = [
+
+    {
+        airline : "Airbus A900",
+        flight_number : "US555",
+        price : 1500,
+        number_of_seats : 350,
+        departing_airport : california_LAX._id,
+        departing_time : new Date("2024-03-10"),
+        arrival_airport : new_york_JFK._id,
+        arrival_time : new Date("2024-03-11")
+    },
+    {
+        airline : "Boeing A898",
+        flight_number : "US901",
+        price : 1500,
+        number_of_seats : 250,
+        departing_airport : california_SFO._id,
+        departing_time : new Date("2024-04-18"),
+        arrival_airport : new_york_LGA._id,
+        arrival_time : new Date("2024-04-19")
+    },
+    {
+        airline : "Boeing 777",
+        flight_number : "US222",
+        price : 1050,
+        number_of_seats : 150,
+        departing_airport :california_LAX._id,
+        departing_time :new Date("2024-05-11"),
+        arrival_airport : new_york_LGA._id,
+        arrival_time : new Date("2024-05-12")
+    },
+    {
+        airline : "Airbus A330",
+        flight_number : "US581",
+        price : 2850,
+        number_of_seats : 150,
+        departing_airport : california_SFO._id,
+        departing_time : new Date("2024-10-05"),
+        arrival_airport : new_york_JFK._id,
+        arrival_time : new Date("2024-10-06")
+    },
+    {
+        airline : "Airbus A380",
+        flight_number : "US551",
+        price : 1250,
+        number_of_seats : 130,
+        departing_airport : california_LAX._id,
+        departing_time : new Date("2024-06-02"),
+        arrival_airport : new_york_JFK._id,
+        arrival_time : new Date("2024-06-03")
+    },
+    {
+        airline : "Airbus A330",
+        flight_number : "US501",
+        price : 1550,
+        number_of_seats : 150,
+        departing_airport : california_SFO._id,
+        departing_time : new Date("2024-07-04"),
+        arrival_airport : new_york_LGA._id,
+        arrival_time : new Date("2024-07-05")
+    },
+    {
+        airline : "Airbus A380",
+        flight_number : "US551",
+        price : 1250,
+        number_of_seats : 130,
+        departing_airport : california_SFO._id,
+        departing_time : new Date("2024-04-04"),
+        arrival_airport : new_york_JFK._id,
+        arrival_time : new Date("2024-04-05")
+    }
+]
+
+await Flight.insertMany(Flights)
+console.log("Flight are Sheduled!")
+
+//Query
+
+}
+
+const delete_existing = async () => {
+  //const  airline = await Airport.find({ name : "California"})
+  const delete_airports = await Airport.deleteMany(
+    {
+      name : "California"
+    }
+  )
+    console.log(delete_airports)
+}
+const BonusQuery =  async () => {
+
+  const california_LAX = await Airport.find({ code: "LAX" })
+  console.log(" Cali ", california_LAX)
+  const california_SFO = await Airport.find({  code: "SFO" })
+  const new_york_JFK = await Airport.find({ code: "JFK" })
+  const new_york_LGA = await Airport.find({ code: "LGA" }) 
+
+  //console.log(`Cali -  ${california_LAX}`)
+  const cal_new_flights = await Flight.find(
+    {
+      // departing_airport:"65c40528dbc2d3c25c0aead5",
+      // arrival_airport:"65c40528dbc2d3c25c0aead6",
+      // departing_time:{$gt:Date.now()}
+      departing_airport:california_LAX[0]._id,
+      arrival_airport:new_york_JFK[0]._id,
+      departing_time:{$gt:Date.now()}
+      })
+      console.log(cal_new_flights)
+}
 
 
 async function main() {
@@ -119,8 +269,13 @@ async function main() {
         // await update_Flight_Airport()
         //await delete_flight()
         //await view_flight_ascending()
-        await view_upcomming_flights()
-    
+        //await view_upcomming_flights()
+        
+        //await create_Airport()
+        //await filter_cal_ny_flight()
+        //await delete_existing()
+        await BonusQuery()
+
     } catch (error) {
       console.log(error)
     } finally {
