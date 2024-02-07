@@ -6,8 +6,8 @@ const Flight = new Schema (
         flight_number: { type: String, required: true },
         price: { type: Number, required: true },
         number_of_seats: { type: Number, required: true },
-        departing_airport: { type: Schema.Types.ObjectId, ref: 'airport_id'},
-        arrival_airport: { type: Schema.Types.ObjectId, ref: 'airport_id'},
+        departing_airport: { type: Schema.Types.ObjectId, ref: 'Airport'},
+        arrival_airport: { type: Schema.Types.ObjectId, ref: 'Airport'},
         departure_date_time: {type: Date, required: true }
     },
     { timestamps: true}    

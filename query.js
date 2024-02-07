@@ -7,9 +7,16 @@ const findAirports = async () => {
 }
 
 
+const findFlights = async () => {
+    const flights = await Flight.find({}).populate('arrival_airport').populate('departing_airport')
+    console.log(flights)
+}
+
+
 async function main() {
     try {
-       await findAirports()
+       //await findAirports()
+       await findFlights()
     } catch (error) {
         console.log(error)
     } finally {
