@@ -58,6 +58,40 @@ const creat_Flight = async () => {
     console.log(create_ariline)
 }
 
+// I want to be able to update the details for my Flights and Airports
+const update_Flight_Airport = async () => {
+
+  const halifax_NS = await Airport.find({  code: "YHZ" })
+  const qubec_OT = await Airport.find({ code: "YUL" })
+
+  const  airline = await Flight.findOne({ flight_number : "UL450" })
+
+    const update_airline_UL450 = await Flight.updateOne(
+      {
+        flight_number : airline.flight_number
+      },
+      {
+          price : 1500, 
+          departing_airport :qubec_OT[0]._id,
+          arrival_airport:halifax_NS[0]._id
+      }
+    )
+      console.log(update_airline_UL450)
+
+}
+
+// I want to be able to delete any Flight and Airport
+const delete_flight = async () => {
+
+  const  airline = await Flight.findOne({ flight_number : "UL450" })
+  const delete_UL450_flight = await Flight.findOneAndDelete(
+    {
+      flight_number : airline.flight_number
+    }
+  )
+    console.log(delete_UL450_flight)
+}
+
 
 
 async function main() {
@@ -65,7 +99,9 @@ async function main() {
         //await find_Flights()
         //await find_Flights_Of_One_Airport()
         //await find_airport_by_id()
-        await creat_Flight()
+        //await creat_Flight()
+        // await update_Flight_Airport()
+        await delete_flight()
     
     } catch (error) {
       console.log(error)
