@@ -50,9 +50,9 @@ const creat_Flight = async () => {
       price : 2500,
       number_of_seats : 250,
       departing_airport : calgary_AB[0]._id,
-      departing_time : new Date("2024-02-11"),
+      departing_time : new Date("2024-02-1"),
       arrival_airport : Vancouver_BC[0]._id,
-      arrival_time : new Date("2024-02-13")
+      arrival_time : new Date("2024-02-2")
     }
   ) 
     console.log(create_ariline)
@@ -92,6 +92,22 @@ const delete_flight = async () => {
     console.log(delete_UL450_flight)
 }
 
+//Bonuses
+//I want to view the list of flights by departure date in ascending order.
+
+const view_flight_ascending = async () => {
+  const  sort_airline = await Flight.find({ }).sort({departing_time:"desc"})
+  console.log(sort_airline)
+}
+
+
+//I want the flights in the list to not be displayed if the flight's departure date and time have passed.
+const view_upcomming_flights = async () => {
+  const  sort_airline = await Flight.find({departing_time:{$gt:Date.now()} })
+  console.log(sort_airline)
+}
+
+
 
 
 async function main() {
@@ -101,7 +117,9 @@ async function main() {
         //await find_airport_by_id()
         //await creat_Flight()
         // await update_Flight_Airport()
-        await delete_flight()
+        //await delete_flight()
+        //await view_flight_ascending()
+        await view_upcomming_flights()
     
     } catch (error) {
       console.log(error)
