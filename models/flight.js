@@ -13,4 +13,4 @@ const Flight = new Schema(
     {timestamps: true}
 )
 
-module.exports = Airport
+module.exports = Flight
