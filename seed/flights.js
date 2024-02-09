@@ -25,7 +25,7 @@ const main = async () => {
             price: 200,
             number_of_seats: 200,
             departing_airport: airports[2]._id,
-            arrival_airport: airports[0].i_id,
+            arrival_airport: airports[0]._id,
             departure_date: Date.UTC(2023,6,23,21,20)
         },
         {
@@ -34,7 +34,7 @@ const main = async () => {
             price: 200,
             number_of_seats: 200,
             departing_airport: airports[2]._id,
-            arrival_airport: airports[0].i_id,
+            arrival_airport: airports[0]._id,
             departure_date: Date.UTC(2023,6,21,22,45)
         },
         {
@@ -43,7 +43,7 @@ const main = async () => {
             price: 1300,
             number_of_seats: 560,
             departing_airport: airports[1]._id,
-            arrival_airport: airports[2].i_id,
+            arrival_airport: airports[2]._id,
             departure_date: Date.UTC(2024,1,14,22,45)
         },
         {
@@ -52,7 +52,7 @@ const main = async () => {
             price: 200,
             number_of_seats: 200,
             departing_airport: airports[1]._id,
-            arrival_airport: airports[2].i_id,
+            arrival_airport: airports[2]._id,
             departure_date: Date.UTC(2024,5,21,22,45)
         },
         {
@@ -61,7 +61,7 @@ const main = async () => {
             price: 350,
             number_of_seats: 200,
             departing_airport: airports[3]._id,
-            arrival_airport: airports[2].i_id,
+            arrival_airport: airports[2]._id,
             departure_date: Date.UTC(2022,6,21,22,45)
         },
         {
@@ -70,7 +70,7 @@ const main = async () => {
             price: 200,
             number_of_seats: 200,
             departing_airport: airports[0]._id,
-            arrival_airport: airports[3].i_id,
+            arrival_airport: airports[3]._id,
             departure_date: Date.UTC(2022,0,21,22,45)
         },
     ]

@@ -6,8 +6,8 @@ const Flight = new Schema(
         flight_number: {type: String, required: true},
         price: {type: Number, required: true},
         number_of_seats: {type: Number, required: true},
-        departing_airport: {type: Schema.Types.ObjectId, ref: 'departing_airport'},
-        arrival_airport: {type: Schema.Types.ObjectId, ref: 'arrival_airport'},
+        departing_airport: {type: Schema.Types.ObjectId, ref: 'Airport'}, //Ref has to be the name of the model it is referencing
+        arrival_airport: {type: Schema.Types.ObjectId, ref: 'Airport'},
         departure_date: {type: Date, required: true}
     },
     {timestamps: true}
